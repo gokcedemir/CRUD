@@ -1,13 +1,14 @@
-FROM debian:buster
+FROM ruby:2.5.5
 
-USER root
-
-RUN apt update
-RUN apt install ruby build-essential ruby2.5-dev postgresql-server-dev-all -y
-
-RUN mkdir -p /api
-RUN cd /api
-
-COPY . .
+ADD . /api
+WORKDIR /api
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 RUN gem install bundler
 RUN bundle install
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
