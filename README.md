@@ -2,7 +2,7 @@
 This is a simple CRUD application. This monorepo contains an API and a frontend APP . Each
 directory has a simple Dockerfile . 
  
-# Requirenments 
+# Requirements 
 1. docker
 2. docker-compose
  
