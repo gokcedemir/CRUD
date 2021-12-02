@@ -1,9 +1,16 @@
-FROM node:16-buster
+FROM node:16-buster AS publish
 
-USER root
+COPY . ./build
+WORKDIR build
 
-RUN mkdir -p /app
-RUN cd /app
-
-COPY . .
 RUN npm install
+RUN npm install typescript@4.0.2 -g 
+ 
+RUN npm run
+
+FROM nginxinc/nginx-unprivileged:latest AS start 
+EXPOSE 80 
+WORKDIR app 
+ 
+ENV TZ=Europe/Istanbul 
+COPY default.conf /etc/nginx/conf.d/default.conf
