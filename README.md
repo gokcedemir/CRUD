@@ -9,10 +9,10 @@ directory has a simple Dockerfile .
 # How to Run This Application? 
 After complete all requirements, you just run the below commands.
 
-> docker-compose build<br> Firstly build 
-> docker-compose up<br> Run all service in docker-compose file
-> docker-compose run api rails db:create<br> initialize database
-> docker-compose run api rails db:migrate db:seed<br> load database schemas
+> $docker-compose build      Firstly build<br>  
+> $docker-compose up         Run all service in docker-compose file<br> 
+> $docker-compose run api rails db:create   initialize database<br> 
+> $docker-compose run api rails db:migrate db:seed    load database schemas<br>
 
 # Result
 
